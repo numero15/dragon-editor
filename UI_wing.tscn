@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://d3m51b0uvhqbj"]
+
+[node name="Control" type="Panel"]
+custom_minimum_size = Vector2(512, 512)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Button" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "wing 1
+"
+
+[node name="Button2" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "wing 2
+"

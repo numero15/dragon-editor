@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://bnbc207ds38pc"]
+
+[ext_resource type="Script" path="res://Dragon_3/Prop.gd" id="1_imb63"]
+[ext_resource type="PackedScene" uid="uid://dt04bkiigpxff" path="res://models/vertebra.blend" id="2_pwdal"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_0wsf3"]
+radius = 1.0
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_wn5cx"]
+height = 5.0
+
+[node name="Prop" type="Node3D"]
+script = ExtResource("1_imb63")
+skel_path = NodePath("../../Body/Armature/Skeleton3D")
+bone_id = 5
+
+[node name="collisonBody" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="collisonBody"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+shape = SubResource("CylinderShape3D_0wsf3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(4, 0, 0, 0, -1.74846e-07, 4, 0, -4, -1.74846e-07, 0, 0, 0.296443)
+
+[node name="ring" parent="." instance=ExtResource("2_pwdal")]
+transform = Transform3D(4, 0, 0, 0, -1.74846e-07, 4, 0, -4, -1.74846e-07, 0, 0, 0.296443)
+visible = false
+
+[node name="leg" type="Node3D" parent="."]
+
+[node name="wing" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="wing"]
+transform = Transform3D(1, 0, 0, 0, 0.691753, 0.722135, 0, -0.722135, 0.691753, 0, 0.85308, 0)
+mesh = SubResource("CapsuleMesh_wn5cx")
+
+[connection signal="mouse_entered" from="collisonBody" to="." method="_on_collison_body_mouse_entered"]
+[connection signal="mouse_exited" from="collisonBody" to="." method="_on_collison_body_mouse_exited"]

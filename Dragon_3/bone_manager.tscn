@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://c6huie8kxdku8"]
+
+[ext_resource type="Script" path="res://Dragon_3/BoneManager.gd" id="1_sj4h8"]
+
+[sub_resource type="Curve" id="Curve_mv3lo"]
+max_value = 10.0
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 10), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_qbf7d"]
+min_value = -1.0
+_data = [Vector2(0, -1), 0.0, 0.0, 0, 0, Vector2(0.5, 1), 0.0, 0.0, 0, 0, Vector2(1, -1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="BoxMesh" id="BoxMesh_7glrn"]
+
+[node name="BoneManager2" type="Node3D"]
+script = ExtResource("1_sj4h8")
+distance_strength = SubResource("Curve_mv3lo")
+oscillator = SubResource("Curve_qbf7d")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_7glrn")

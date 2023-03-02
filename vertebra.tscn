@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dv3tktb2nweht"]
+
+[ext_resource type="PackedScene" uid="uid://10vhnm8iukoc" path="res://models/vertebra.glb" id="1_qv2jn"]
+[ext_resource type="Script" path="res://vertebra.gd" id="2_bpp7i"]
+
+[node name="vertebra" instance=ExtResource("1_qv2jn")]
+script = ExtResource("2_bpp7i")
+
+[node name="vertebra007" parent="." index="0"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.00141057, 0.137368, -0.294401)
