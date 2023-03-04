@@ -29,6 +29,7 @@ func remesh():
 		var sample = body_curve_3d.sample_baked(abs(vert.z)/_mesh_length * -body_curve_3d.get_point_position(body_curve_3d.point_count-1).z)
 		vert.y = unaltered_vertices[i].y*-sample.y # Scales the vertex by doubling size.
 		vert.x =  unaltered_vertices[i].x*-sample.y # Scales the vertex by doubling size.
+		vert.y = vert.y + sample.y*.6 #décaller vers le bas pour faire le ventre
 		mdt.set_vertex(i, vert)
 		
 	mesh_instance.mesh.clear_surfaces() # Deletes the first surface of the mesh.

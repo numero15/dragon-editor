@@ -13,6 +13,7 @@ func _ready():
 func _on_PickArea_input_event(_camera: Node, event: InputEvent, _position: Vector3, _normal: Vector3, _shape_idx: int):
 	if event is InputEventMouseMotion and dragging :
 		hover = true
+		print("eeee")
 
 func _unhandled_input(event):
 	if event is InputEventMouseButton:
@@ -27,14 +28,15 @@ func _unhandled_input(event):
 				dragging = false
 		
 	if dragging and hover and event is InputEventMouseMotion :
+		
 		var tween = get_tree().create_tween()
 		tween.tween_method(set_pos, get_node(curve).curve.get_point_position(point_id), get_node(target).transform.origin, .2)
 
 func set_pos(value: Vector3):
-	if value.y>-.5 :
-		value.y = -.5
-	if value.y<-4 :
-		value.y = -4
+	if value.y>-.2 :
+		value.y = -.2
+	if value.y<-1.5 :
+		value.y = -1.5
 	
 	get_node(curve).curve.set_point_position(point_id,value)	
 	transform.origin = value

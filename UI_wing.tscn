@@ -1,24 +1,151 @@
-[gd_scene format=3 uid="uid://d3m51b0uvhqbj"]
+[gd_scene load_steps=6 format=3 uid="uid://d3m51b0uvhqbj"]
 
-[node name="Control" type="Panel"]
-custom_minimum_size = Vector2(512, 512)
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[ext_resource type="Theme" uid="uid://uvworw30pvdc" path="res://ui_theme.tres" id="1_7h83w"]
+[ext_resource type="Script" path="res://UI_panel.gd" id="2_nihqw"]
+[ext_resource type="Script" path="res://UIButton.gd" id="3_cidh8"]
+[ext_resource type="PackedScene" uid="uid://dv3tktb2nweht" path="res://vertebra.tscn" id="4_6nxty"]
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[sub_resource type="ButtonGroup" id="ButtonGroup_hpst0"]
 
-[node name="Button" type="Button" parent="HBoxContainer"]
+[node name="uiPanel" type="MarginContainer"]
+custom_minimum_size = Vector2(128, 128)
+offset_right = 366.0
+offset_bottom = 316.0
+theme = ExtResource("1_7h83w")
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+script = ExtResource("2_nihqw")
+
+[node name="TabContainer" type="TabContainer" parent="."]
+layout_mode = 2
+
+[node name="BodyContainer" type="VBoxContainer" parent="TabContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/BodyContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/BodyContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+vertical_scroll_mode = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/BodyContainer/MarginContainer/ScrollContainer"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 10
+
+[node name="Rings" type="HBoxContainer" parent="TabContainer/BodyContainer/MarginContainer/ScrollContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Button" type="Button" parent="TabContainer/BodyContainer/MarginContainer/ScrollContainer/MarginContainer/Rings"]
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_hpst0")
+text = "ring 1"
+script = ExtResource("3_cidh8")
+parameter = ExtResource("4_6nxty")
+
+[node name="Button2" type="Button" parent="TabContainer/BodyContainer/MarginContainer/ScrollContainer/MarginContainer/Rings"]
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_hpst0")
+text = "ring 2"
+script = ExtResource("3_cidh8")
+
+[node name="Button3" type="Button" parent="TabContainer/BodyContainer/MarginContainer/ScrollContainer/MarginContainer/Rings"]
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_hpst0")
+text = "ring 3
+"
+script = ExtResource("3_cidh8")
+
+[node name="Button4" type="Button" parent="TabContainer/BodyContainer/MarginContainer/ScrollContainer/MarginContainer/Rings"]
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_hpst0")
+text = "ring 1"
+script = ExtResource("3_cidh8")
+parameter = ExtResource("4_6nxty")
+
+[node name="Button5" type="Button" parent="TabContainer/BodyContainer/MarginContainer/ScrollContainer/MarginContainer/Rings"]
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_hpst0")
+text = "ring 2"
+script = ExtResource("3_cidh8")
+
+[node name="Button6" type="Button" parent="TabContainer/BodyContainer/MarginContainer/ScrollContainer/MarginContainer/Rings"]
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_hpst0")
+text = "ring 3
+"
+script = ExtResource("3_cidh8")
+
+[node name="Button7" type="Button" parent="TabContainer/BodyContainer/MarginContainer/ScrollContainer/MarginContainer/Rings"]
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_hpst0")
+text = "ring 1"
+script = ExtResource("3_cidh8")
+parameter = ExtResource("4_6nxty")
+
+[node name="Button8" type="Button" parent="TabContainer/BodyContainer/MarginContainer/ScrollContainer/MarginContainer/Rings"]
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_hpst0")
+text = "ring 2"
+script = ExtResource("3_cidh8")
+
+[node name="Button9" type="Button" parent="TabContainer/BodyContainer/MarginContainer/ScrollContainer/MarginContainer/Rings"]
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_hpst0")
+text = "ring 3
+"
+script = ExtResource("3_cidh8")
+
+[node name="MarginContainer2" type="MarginContainer" parent="TabContainer/BodyContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="Wings" type="HBoxContainer" parent="TabContainer/BodyContainer/MarginContainer2"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="TabContainer/BodyContainer/MarginContainer2/Wings"]
 layout_mode = 2
 text = "wing 1
 "
 
-[node name="Button2" type="Button" parent="HBoxContainer"]
+[node name="Button2" type="Button" parent="TabContainer/BodyContainer/MarginContainer2/Wings"]
 layout_mode = 2
 text = "wing 2
 "
+
+[node name="LegWingContainer" type="VBoxContainer" parent="TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/LegWingContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="TabContainer/LegWingContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Button2" type="Button" parent="TabContainer/LegWingContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Button3" type="Button" parent="TabContainer/LegWingContainer/HBoxContainer"]
+layout_mode = 2

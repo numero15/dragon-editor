@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://lsrirwxvvvjr"]
+
+[ext_resource type="PackedScene" uid="uid://crk8d6vmb2uj4" path="res://models/leg01.blend" id="1_uoamb"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ys4sb"]
+
+[node name="leg01" instance=ExtResource("1_uoamb")]
+
+[node name="Cylinder004" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_ys4sb")

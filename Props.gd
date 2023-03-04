@@ -8,11 +8,15 @@ func _ready():
 	var _skel = get_node(skeleton)
 	for _id in _skel.get_bone_count():
 		var prop_instance = prop.instantiate()
-		prop_instance.skel_path =_skel.get_path()
+		prop_instance.skel =_skel
 		prop_instance.bone_id = _id
-		prop_instance.body_curve_path = get_node(body_curve_path)
-
+		prop_instance.body_curve = get_node(body_curve_path)
 		self.add_child(prop_instance)
+		
+func setup_props(button_pressed,_type, _parameter):
+	if !button_pressed : return
+	for _p in get_children():
+		_p.setup(_type, _parameter)
 		
 func scale():
 	var body_curve_3d = get_node(body_curve_path).curve

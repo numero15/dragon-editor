@@ -1,6 +1,6 @@
 extends MeshInstance3D
 
-var rings = 60
+var rings = 20
 var radial_segments = 16
 var height = 1
 var radius = 1
@@ -25,7 +25,7 @@ func _ready():
 	# Loop over rings.
 	for i in range(rings + 1):
 		var v = float(i) / rings * 4
-		var z = -i*2
+		var z = -i/2.0
 
 		# Loop over segments in ring.
 		for j in range(radial_segments):

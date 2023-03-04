@@ -1,5 +1,5 @@
 extends Skeleton3D
-var bones = 60
+var bones = 20
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -12,7 +12,7 @@ func _ready():
 		set_bone_pose_position(i+1,Vector3(0,0,2)  )
 #		set_bone_pose_scale(i+1,Vector3(1,1,1)  )
 		var _t : Transform3D = Transform3D()
-		_t.origin =Vector3(0,0,-2)
+		_t.origin =Vector3(0,0,-.5)
 		set_bone_rest(i+1,_t)
 	get_child(0).skeleton = get_path()
 	

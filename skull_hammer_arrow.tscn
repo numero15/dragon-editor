@@ -1,11 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://78bchv3mrr5n"]
+[gd_scene load_steps=3 format=3 uid="uid://78bchv3mrr5n"]
 
 [ext_resource type="PackedScene" uid="uid://dfm6n0jieya78" path="res://models/skullKeyShape_01.glb" id="1_1s65d"]
-[ext_resource type="Texture2D" uid="uid://chv1qk4sb2t2c" path="res://textures/cracked_concrete_wall_diff_1k.jpg" id="2_rf0d1"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mxxa1"]
-albedo_color = Color(1, 0.984314, 0.854902, 1)
-albedo_texture = ExtResource("2_rf0d1")
+albedo_color = Color(0.761719, 0.761719, 0.761719, 1)
 metallic_specular = 0.0
 uv1_scale = Vector3(8, 8, 8)
 
@@ -13,5 +11,4 @@ uv1_scale = Vector3(8, 8, 8)
 
 [node name="SkullArrow001" parent="." index="0"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1.30281, 0.188197, 0)
-blend_shapes/SkullHammer.001 = 1.0
 surface_material_override/0 = SubResource("StandardMaterial3D_mxxa1")

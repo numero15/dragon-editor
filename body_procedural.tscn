@@ -1,9 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://cu3278bkhu3ux"]
+[gd_scene load_steps=6 format=3 uid="uid://cu3278bkhu3ux"]
 
 [ext_resource type="Script" path="res://body_procedural.gd" id="1_hrfpy"]
 [ext_resource type="Script" path="res://MeshBody.gd" id="2_kjj5e"]
 [ext_resource type="Script" path="res://skeleton_procedural.gd" id="2_t6180"]
-[ext_resource type="Texture2D" uid="uid://dvnonpbh481qd" path="res://textures/feathers_albedo.png" id="3_ud4c5"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_r6td3"]
 _surfaces = [{
@@ -20,7 +19,7 @@ _surfaces = [{
 }]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hqoqf"]
-albedo_texture = ExtResource("3_ud4c5")
+albedo_color = Color(0.435294, 0.760784, 0.572549, 1)
 uv1_scale = Vector3(3, 3, 3)
 
 [node name="Body_procedural" type="Node3D"]

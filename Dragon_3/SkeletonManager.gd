@@ -14,7 +14,7 @@ func _ready():
 		self.add_child(bone_manager_instance)
 		
 	self.get_child(0).dampening = 1
-	self.get_child(10).is_oscillator = true
+	self.get_child(5).is_oscillator = true
 	
 #	setup rings
 	for i in get_child_count() :

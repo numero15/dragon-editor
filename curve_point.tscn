@@ -4,12 +4,12 @@
 [ext_resource type="Material" uid="uid://bmcmlnaeol4fm" path="res://shaderUI.tres" id="2_bdnuy"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_mj48n"]
-radius = 0.8
+radius = 0.4
 
 [sub_resource type="SphereMesh" id="SphereMesh_47dkk"]
 material = ExtResource("2_bdnuy")
-radius = 0.3
-height = 0.6
+radius = 0.2
+height = 0.4
 
 [node name="CurvePoint" type="StaticBody3D"]
 script = ExtResource("1_kdpen")
