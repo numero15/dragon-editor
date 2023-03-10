@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cjdvhelrtmlyw"]
+[gd_scene load_steps=27 format=3 uid="uid://cjdvhelrtmlyw"]
 
 [ext_resource type="Shader" path="res://sky.gdshader" id="1_ay4q6"]
 [ext_resource type="PackedScene" uid="uid://78bchv3mrr5n" path="res://skull_hammer_arrow.tscn" id="1_cnpe8"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://cu3278bkhu3ux" path="res://body_procedural.tscn" id="6_4m1mg"]
 [ext_resource type="Script" path="res://Props.gd" id="8_aefjh"]
 [ext_resource type="Script" path="res://Dragon_3/SkeletonManager.gd" id="8_wec21"]
+[ext_resource type="AudioStream" uid="uid://06jhetqh3cdv" path="res://sounds/Dark Ambient 4.wav" id="12_mpvlx"]
 [ext_resource type="PackedScene" uid="uid://d3m51b0uvhqbj" path="res://UI_wing.tscn" id="12_wrwwg"]
 
 [sub_resource type="Gradient" id="Gradient_oechn"]
@@ -42,18 +43,45 @@ sky = SubResource("Sky_8ta3g")
 ambient_light_source = 3
 volumetric_fog_emission = Color(0.384314, 0, 0.784314, 1)
 volumetric_fog_sky_affect = 0.495
+adjustment_enabled = true
+adjustment_contrast = 1.12
+adjustment_saturation = 0.6
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_pj7ge"]
+dof_blur_far_distance = 30.0
+dof_blur_near_distance = 1.0
 
 [sub_resource type="Curve3D" id="Curve3D_ppp0k"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, -0.2, 0, 0, 0, 2, 0, 0, -2, 0, -0.3, -2, 0, 0, 2, 0, 0, -2, 0, -0.3, -5, 0, 0, 2, 0, 0, -2, 0, -0.3, -10, 0, 0, 0, 0, 0, 0, -0.001, -0.1, -15),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, -0.2, 0, 0, 0, 2, 0, 0, -2, 0, -0.3, -2, 0, 0, 2, 0, 0, -2, -0.0128016, -0.400644, -4.89265, 0, 0, 2, 0, 0, -2, 0, -0.3, -10, 0, 0, 0, 0, 0, 0, -0.001, -0.1, -15),
 "tilts": PackedFloat32Array(0, 0, 0, 0, 0)
 }
 point_count = 5
 
 [sub_resource type="SphereMesh" id="SphereMesh_24vkj"]
+radius = 0.05
+height = 0.1
+radial_segments = 8
+rings = 4
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hnbn2"]
-size = Vector3(0.2, 16, 50)
+size = Vector3(0.05, 8, 50)
+
+[sub_resource type="Curve3D" id="Curve3D_k1hp5"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -0.2, 0, 0, 0, 0, 0, 0, 0, 0, -0.2, 0, -5, 0, 0, 0, 0, 0, 0, -0.2, 0, -10, 0, 0, 0, 0, 0, 0, -0.2, 0, -15),
+"tilts": PackedFloat32Array(0, 0, 0, 0)
+}
+point_count = 4
+
+[sub_resource type="SphereMesh" id="SphereMesh_2bsj5"]
+radius = 0.05
+height = 0.1
+radial_segments = 8
+rings = 4
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_b4vn2"]
+size = Vector3(8, 0.05, 50)
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_pip0e"]
 _surfaces = [{
@@ -73,17 +101,19 @@ _surfaces = [{
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_2yfna")
+camera_attributes = SubResource("CameraAttributesPractical_pj7ge")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.977172, 0.188111, 0.0987382, -0.0981844, -0.0122832, 0.995092, 0.188401, -0.982071, 0.00646685, 8.13701, 9.21541, 11.1423)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="Control" parent="CanvasLayer" instance=ExtResource("12_wrwwg")]
+visible = false
+props = NodePath("../../Dragon_3/Props")
 
 [node name="CameraTarget" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.35803)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7.17483)
 
 [node name="SpringArm3D" type="SpringArm3D" parent="CameraTarget"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.44139)
@@ -108,11 +138,11 @@ script = ExtResource("2_wnvs2")
 
 [node name="CSGPolygon3D" type="CSGPolygon3D" parent="UIControls/EditableCurveHeight"]
 top_level = true
-polygon = PackedVector2Array(0, 0, 0, 0.05, 0.05, 0.05, 0.05, 0)
+polygon = PackedVector2Array(0, 0, 0, 0.02, 0.02, 0.02, 0.02, 0)
 mode = 2
 path_node = NodePath("..")
 path_interval_type = 0
-path_interval = 1.0
+path_interval = 0.2
 path_simplify_angle = 0.0
 path_rotation = 2
 path_local = true
@@ -134,12 +164,44 @@ skeleton = NodePath("../..")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -25)
 shape = SubResource("BoxShape3D_hnbn2")
 
+[node name="EditableCurveWidth" type="Path3D" parent="UIControls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+curve = SubResource("Curve3D_k1hp5")
+script = ExtResource("2_wnvs2")
+horizontal = true
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="UIControls/EditableCurveWidth"]
+polygon = PackedVector2Array(0, 0, 0, 0.02, 0.02, 0.02, 0.02, 0)
+mode = 2
+path_node = NodePath("..")
+path_interval_type = 0
+path_interval = 0.2
+path_simplify_angle = 0.0
+path_rotation = 2
+path_local = true
+path_continuous_u = true
+path_u_distance = 1.0
+path_joined = false
+material = ExtResource("3_pgw5e")
+
+[node name="DragZone" type="StaticBody3D" parent="UIControls/EditableCurveWidth"]
+script = ExtResource("4_o3mko")
+horizontal = true
+
+[node name="DragTarget" type="MeshInstance3D" parent="UIControls/EditableCurveWidth/DragZone"]
+mesh = SubResource("SphereMesh_2bsj5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="UIControls/EditableCurveWidth/DragZone"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -25)
+shape = SubResource("BoxShape3D_b4vn2")
+
 [node name="Dragon_3" type="Node3D" parent="." groups=["dragon"]]
 script = ExtResource("5_648uc")
 
 [node name="Body_procedural" parent="Dragon_3" instance=ExtResource("6_4m1mg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
-body_curve_path = NodePath("../../UIControls/EditableCurveHeight")
+body_height_curve_path = NodePath("../../UIControls/EditableCurveHeight")
+body_width_curve_path = NodePath("../../UIControls/EditableCurveWidth")
 
 [node name="Skeleton3D" parent="Dragon_3/Body_procedural" index="0"]
 bones/1/position = Vector3(0, 0, 1)
@@ -233,11 +295,15 @@ transform = Transform3D(-8.49119e-08, 0, 0.521184, 0, 0.521184, 0, -0.521184, 0,
 [node name="Props" type="Node3D" parent="Dragon_3"]
 script = ExtResource("8_aefjh")
 skeleton = NodePath("../Body_procedural/Skeleton3D")
-body_curve_path = NodePath("../../UIControls/EditableCurveHeight")
+body_height_curve_path = NodePath("../../UIControls/EditableCurveHeight")
+body_width_curve_path = NodePath("../../UIControls/EditableCurveWidth")
 
 [node name="SkeletonManager" type="Node3D" parent="Dragon_3"]
 visible = false
 script = ExtResource("8_wec21")
 skeleton = NodePath("../Body_procedural/Skeleton3D")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_mpvlx")
 
 [editable path="Dragon_3/Body_procedural"]

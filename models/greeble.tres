@@ -1,0 +1,31 @@
+[gd_resource type="ArrayMesh" load_steps=3 format=3 uid="uid://lh5tbc8sativ"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qstbe"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_5dbrh"]
+_surfaces = [{
+"aabb": AABB(-0.00438191, -0.1, -1.04085, 0.194077, 0.2, 1.04776),
+"format": 4097,
+"index_count": 3,
+"index_data": PackedByteArray(0, 0, 2, 0, 1, 0),
+"primitive": 3,
+"vertex_count": 3,
+"vertex_data": PackedByteArray(32, 150, 143, 187, 205, 204, 204, 189, 96, 15, 226, 59, 122, 63, 66, 62, 0, 0, 0, 0, 148, 58, 133, 191, 32, 150, 143, 187, 205, 204, 204, 61, 96, 15, 226, 59)
+}]
+blend_shape_mode = 0
+
+[resource]
+resource_name = "greeble-62464cf8b6cbb701f2cfb841f14aab48_Plane"
+_surfaces = [{
+"aabb": AABB(-0.00438191, -0.1, -1.04085, 0.194077, 0.2, 1.04776),
+"attribute_data": PackedByteArray(0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+"format": 4119,
+"index_count": 3,
+"index_data": PackedByteArray(0, 0, 2, 0, 1, 0),
+"material": SubResource("StandardMaterial3D_qstbe"),
+"primitive": 3,
+"vertex_count": 3,
+"vertex_data": PackedByteArray(32, 150, 143, 187, 205, 204, 204, 189, 96, 15, 226, 59, 253, 235, 255, 127, 116, 246, 65, 137, 122, 63, 66, 62, 0, 0, 0, 0, 148, 58, 133, 191, 253, 235, 255, 127, 116, 246, 65, 137, 32, 150, 143, 187, 205, 204, 204, 61, 96, 15, 226, 59, 253, 235, 255, 127, 116, 246, 65, 137)
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_5dbrh")

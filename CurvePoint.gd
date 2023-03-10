@@ -5,7 +5,9 @@ var curve : NodePath
 var target : NodePath
 var dragging = false
 var hover = false
-
+var horizontal : bool = false
+var min : float = .1
+var max : float = 1.5
 
 func _ready():
 	connect("input_event", _on_PickArea_input_event)
@@ -13,7 +15,6 @@ func _ready():
 func _on_PickArea_input_event(_camera: Node, event: InputEvent, _position: Vector3, _normal: Vector3, _shape_idx: int):
 	if event is InputEventMouseMotion and dragging :
 		hover = true
-		print("eeee")
 
 func _unhandled_input(event):
 	if event is InputEventMouseButton:
@@ -33,16 +34,20 @@ func _unhandled_input(event):
 		tween.tween_method(set_pos, get_node(curve).curve.get_point_position(point_id), get_node(target).transform.origin, .2)
 
 func set_pos(value: Vector3):
-	if value.y>-.2 :
-		value.y = -.2
-	if value.y<-1.5 :
-		value.y = -1.5
+	if !horizontal :
+		if value.y>-min :
+			value.y = -min
+		if value.y<-max :
+			value.y = -max
+	else :
+		if value.x>-min :
+			value.x = -min
+		if value.x<-max :
+			value.x = -max
 	
 	get_node(curve).curve.set_point_position(point_id,value)	
 	transform.origin = value
-	
-	
-		
+
 
 
 

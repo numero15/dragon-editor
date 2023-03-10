@@ -24,8 +24,8 @@ func _ready():
 
 	# Loop over rings.
 	for i in range(rings + 1):
-		var v = float(i) / rings * 4
-		var z = -i/2.0
+		var v = float(i) / rings
+		var z = -i*1.0
 
 		# Loop over segments in ring.
 		for j in range(radial_segments):
@@ -35,6 +35,8 @@ func _ready():
 			var vert = Vector3(x * radius, y * radius, z)
 			verts.append(vert)
 			normals.append(Vector3(vert.x,vert.y,0).normalized())
+			u = u+.25
+			if u >1.0 : u=u-1.0
 			if u <= .5 :
 				u = u*2
 			else :

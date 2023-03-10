@@ -1,11 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://d3m51b0uvhqbj"]
+[gd_scene load_steps=11 format=3 uid="uid://d3m51b0uvhqbj"]
 
 [ext_resource type="Theme" uid="uid://uvworw30pvdc" path="res://ui_theme.tres" id="1_7h83w"]
 [ext_resource type="Script" path="res://UI_panel.gd" id="2_nihqw"]
+[ext_resource type="Script" path="res://ButtonContainer.gd" id="3_2rvi8"]
 [ext_resource type="Script" path="res://UIButton.gd" id="3_cidh8"]
-[ext_resource type="PackedScene" uid="uid://dv3tktb2nweht" path="res://vertebra.tscn" id="4_6nxty"]
+[ext_resource type="Texture2D" uid="uid://cp5bxirk1f78c" path="res://icon.svg" id="3_ck5j5"]
+[ext_resource type="Texture2D" uid="uid://cl63y8o5dekml" path="res://icon_02.svg" id="5_ym1u5"]
+[ext_resource type="PackedScene" uid="uid://o5fejkmn4g1a" path="res://props/rings/ring.tscn" id="7_8lt2x"]
+[ext_resource type="PackedScene" uid="uid://dv3tktb2nweht" path="res://props/rings/vertebra.tscn" id="8_q4g07"]
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_hpst0"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hcj15"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_2nawi"]
 
 [node name="uiPanel" type="MarginContainer"]
 custom_minimum_size = Vector2(128, 128)
@@ -44,74 +50,32 @@ theme_override_constants/margin_bottom = 10
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+script = ExtResource("3_2rvi8")
 
-[node name="Button" type="Button" parent="TabContainer/BodyContainer/MarginContainer/ScrollContainer/MarginContainer/Rings"]
+[node name="CheckBox" type="CheckButton" parent="TabContainer/BodyContainer/MarginContainer/ScrollContainer/MarginContainer/Rings"]
 layout_mode = 2
-toggle_mode = true
-button_group = SubResource("ButtonGroup_hpst0")
-text = "ring 1"
+theme_override_icons/checked = ExtResource("3_ck5j5")
+theme_override_icons/unchecked = ExtResource("5_ym1u5")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_hcj15")
+button_group = SubResource("ButtonGroup_2nawi")
+flat = true
 script = ExtResource("3_cidh8")
-parameter = ExtResource("4_6nxty")
+parameter = ExtResource("7_8lt2x")
 
-[node name="Button2" type="Button" parent="TabContainer/BodyContainer/MarginContainer/ScrollContainer/MarginContainer/Rings"]
+[node name="CheckBox2" type="CheckButton" parent="TabContainer/BodyContainer/MarginContainer/ScrollContainer/MarginContainer/Rings"]
 layout_mode = 2
-toggle_mode = true
-button_group = SubResource("ButtonGroup_hpst0")
-text = "ring 2"
+button_group = SubResource("ButtonGroup_2nawi")
 script = ExtResource("3_cidh8")
+parameter = ExtResource("8_q4g07")
 
-[node name="Button3" type="Button" parent="TabContainer/BodyContainer/MarginContainer/ScrollContainer/MarginContainer/Rings"]
+[node name="CheckBox3" type="CheckButton" parent="TabContainer/BodyContainer/MarginContainer/ScrollContainer/MarginContainer/Rings"]
 layout_mode = 2
-toggle_mode = true
-button_group = SubResource("ButtonGroup_hpst0")
-text = "ring 3
-"
-script = ExtResource("3_cidh8")
-
-[node name="Button4" type="Button" parent="TabContainer/BodyContainer/MarginContainer/ScrollContainer/MarginContainer/Rings"]
-layout_mode = 2
-toggle_mode = true
-button_group = SubResource("ButtonGroup_hpst0")
-text = "ring 1"
-script = ExtResource("3_cidh8")
-parameter = ExtResource("4_6nxty")
-
-[node name="Button5" type="Button" parent="TabContainer/BodyContainer/MarginContainer/ScrollContainer/MarginContainer/Rings"]
-layout_mode = 2
-toggle_mode = true
-button_group = SubResource("ButtonGroup_hpst0")
-text = "ring 2"
+button_group = SubResource("ButtonGroup_2nawi")
 script = ExtResource("3_cidh8")
 
-[node name="Button6" type="Button" parent="TabContainer/BodyContainer/MarginContainer/ScrollContainer/MarginContainer/Rings"]
+[node name="CheckBox4" type="CheckButton" parent="TabContainer/BodyContainer/MarginContainer/ScrollContainer/MarginContainer/Rings"]
 layout_mode = 2
-toggle_mode = true
-button_group = SubResource("ButtonGroup_hpst0")
-text = "ring 3
-"
-script = ExtResource("3_cidh8")
-
-[node name="Button7" type="Button" parent="TabContainer/BodyContainer/MarginContainer/ScrollContainer/MarginContainer/Rings"]
-layout_mode = 2
-toggle_mode = true
-button_group = SubResource("ButtonGroup_hpst0")
-text = "ring 1"
-script = ExtResource("3_cidh8")
-parameter = ExtResource("4_6nxty")
-
-[node name="Button8" type="Button" parent="TabContainer/BodyContainer/MarginContainer/ScrollContainer/MarginContainer/Rings"]
-layout_mode = 2
-toggle_mode = true
-button_group = SubResource("ButtonGroup_hpst0")
-text = "ring 2"
-script = ExtResource("3_cidh8")
-
-[node name="Button9" type="Button" parent="TabContainer/BodyContainer/MarginContainer/ScrollContainer/MarginContainer/Rings"]
-layout_mode = 2
-toggle_mode = true
-button_group = SubResource("ButtonGroup_hpst0")
-text = "ring 3
-"
+button_group = SubResource("ButtonGroup_2nawi")
 script = ExtResource("3_cidh8")
 
 [node name="MarginContainer2" type="MarginContainer" parent="TabContainer/BodyContainer"]
@@ -138,14 +102,7 @@ text = "wing 2
 visible = false
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/LegWingContainer"]
+[node name="ColorPickerButton" type="ColorPickerButton" parent="TabContainer/LegWingContainer"]
+custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
-
-[node name="Button" type="Button" parent="TabContainer/LegWingContainer/HBoxContainer"]
-layout_mode = 2
-
-[node name="Button2" type="Button" parent="TabContainer/LegWingContainer/HBoxContainer"]
-layout_mode = 2
-
-[node name="Button3" type="Button" parent="TabContainer/LegWingContainer/HBoxContainer"]
-layout_mode = 2
+size_flags_horizontal = 0

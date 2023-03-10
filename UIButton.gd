@@ -1,6 +1,6 @@
-extends Button
-@export var parameter : Resource
-var type : String = 'ring' 
+extends CheckButton
+@export var parameter : PackedScene
+@export var type : String = 'ring' 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
