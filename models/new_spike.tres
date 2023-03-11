@@ -1,6 +1,10 @@
 [gd_resource type="ArrayMesh" load_steps=3 format=3 uid="uid://lt0ws5ymh2il"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_edgom"]
+shading_mode = 2
+diffuse_mode = 3
+metallic_specular = 0.0
+roughness = 0.05
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_lc41d"]
 _surfaces = [{

@@ -1,6 +1,6 @@
 extends MarginContainer
 @export var props : NodePath
-@onready var rings = $TabContainer/BodyContainer/MarginContainer/ScrollContainer/MarginContainer/Rings
+@onready var rings = $"TabContainer/leg and wings/MarginContainer/ScrollContainer/MarginContainer/Rings"
 
 func _ready():
 	for _b in rings.get_children() :

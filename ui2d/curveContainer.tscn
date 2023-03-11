@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://cntpc0i50ljds"]
+
+[ext_resource type="Script" path="res://ui2d/curve.gd" id="2_5sa87"]
+
+[sub_resource type="Curve2D" id="Curve2D_khdna"]
+_data = {
+"points": PackedVector2Array(0, 0, 30, 0, 0, 20, -30, 0, 30, 0, 78, 37, -30, 0, 30, 0, 160, 20, -30, 0, 30, 0, 240, 20, -30, 0, 0, 0, 320, 20)
+}
+point_count = 5
+
+[node name="Path2D" type="Path2D"]
+curve = SubResource("Curve2D_khdna")
+script = ExtResource("2_5sa87")

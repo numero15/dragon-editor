@@ -4,6 +4,8 @@ extends SpringArm3D
 @export var min_length : float = 5
 @export var max_length : float = 50
 
+signal camera_rot_x
+
 var dragging = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -24,6 +26,8 @@ func _unhandled_input(event):
 		_r_x = event.relative.y * mouse_sensitivity
 		rotation_degrees.x += _r_x
 		rotation_degrees.x = clamp( rotation_degrees.x, -90.0,90.0)
+		
+		emit_signal("camera_rot_x",rotation_degrees.x)
 		
 		var _r_y = rotation_degrees.y
 		_r_y = event.relative.x * mouse_sensitivity

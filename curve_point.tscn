@@ -1,13 +1,14 @@
 [gd_scene load_steps=5 format=3 uid="uid://bwkdmd7dj6ry4"]
 
 [ext_resource type="Script" path="res://CurvePoint.gd" id="1_kdpen"]
-[ext_resource type="Material" uid="uid://bmcmlnaeol4fm" path="res://shaderUI.tres" id="2_bdnuy"]
+[ext_resource type="Material" uid="uid://bv4nvfkn3uy3" path="res://shaderUI_horizontal_curve.tres" id="2_wlcek"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_mj48n"]
 radius = 0.1
 
 [sub_resource type="SphereMesh" id="SphereMesh_47dkk"]
-material = ExtResource("2_bdnuy")
+resource_local_to_scene = true
+material = ExtResource("2_wlcek")
 radius = 0.1
 height = 0.2
 

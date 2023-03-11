@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://drmd4k3krdjcn"]
+
+[ext_resource type="Texture2D" uid="uid://cp5bxirk1f78c" path="res://icon.svg" id="1_lq8q1"]
+[ext_resource type="Script" path="res://ui2d/curve_controller.gd" id="1_mxl25"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_g4ssw"]
+radius = 15.0
+
+[node name="Area2D" type="Area2D"]
+script = ExtResource("1_mxl25")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_g4ssw")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("1_lq8q1")

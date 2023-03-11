@@ -5,7 +5,12 @@ var radial_segments = 16
 var height = 1
 var radius = 1
 
-func _ready():
+
+#
+#func _ready():
+#	make(rings)
+	
+func make(_l : int):
 	var surface_array = []
 	surface_array.resize(Mesh.ARRAY_MAX)
 
@@ -23,8 +28,8 @@ func _ready():
 	var point = 0
 
 	# Loop over rings.
-	for i in range(rings + 1):
-		var v = float(i) / rings
+	for i in range(_l + 1):
+		var v = float(i) / _l
 		var z = -i*1.0
 
 		# Loop over segments in ring.

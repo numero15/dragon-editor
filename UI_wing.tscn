@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://d3m51b0uvhqbj"]
+[gd_scene load_steps=13 format=3 uid="uid://d3m51b0uvhqbj"]
 
 [ext_resource type="Theme" uid="uid://uvworw30pvdc" path="res://ui_theme.tres" id="1_7h83w"]
 [ext_resource type="Script" path="res://UI_panel.gd" id="2_nihqw"]
@@ -8,6 +8,9 @@
 [ext_resource type="Texture2D" uid="uid://cl63y8o5dekml" path="res://icon_02.svg" id="5_ym1u5"]
 [ext_resource type="PackedScene" uid="uid://o5fejkmn4g1a" path="res://props/rings/ring.tscn" id="7_8lt2x"]
 [ext_resource type="PackedScene" uid="uid://dv3tktb2nweht" path="res://props/rings/vertebra.tscn" id="8_q4g07"]
+[ext_resource type="PackedScene" uid="uid://cntpc0i50ljds" path="res://ui2d/curveContainer.tscn" id="9_otw3a"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_on4al"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hcj15"]
 
@@ -27,32 +30,72 @@ script = ExtResource("2_nihqw")
 [node name="TabContainer" type="TabContainer" parent="."]
 layout_mode = 2
 
-[node name="BodyContainer" type="VBoxContainer" parent="TabContainer"]
+[node name="Body" type="VBoxContainer" parent="TabContainer"]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="TabContainer/BodyContainer"]
+[node name="ColorPickerButton" type="ColorPickerButton" parent="TabContainer/Body"]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="ColorPickerButton2" type="ColorPickerButton" parent="TabContainer/Body"]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/Body"]
 layout_mode = 2
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 15
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 15
 
-[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/BodyContainer/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Body/MarginContainer"]
+layout_mode = 2
+script = ExtResource("3_2rvi8")
+
+[node name="CheckButton" type="CheckButton" parent="TabContainer/Body/MarginContainer/HBoxContainer"]
+layout_mode = 2
+button_group = SubResource("ButtonGroup_on4al")
+script = ExtResource("3_cidh8")
+
+[node name="CheckButton2" type="CheckButton" parent="TabContainer/Body/MarginContainer/HBoxContainer"]
+layout_mode = 2
+button_group = SubResource("ButtonGroup_on4al")
+script = ExtResource("3_cidh8")
+
+[node name="CheckButton3" type="CheckButton" parent="TabContainer/Body/MarginContainer/HBoxContainer"]
+layout_mode = 2
+button_group = SubResource("ButtonGroup_on4al")
+script = ExtResource("3_cidh8")
+
+[node name="leg and wings" type="VBoxContainer" parent="TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/leg and wings"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/leg and wings/MarginContainer"]
 layout_mode = 2
 size_flags_vertical = 0
 vertical_scroll_mode = 0
 
-[node name="MarginContainer" type="MarginContainer" parent="TabContainer/BodyContainer/MarginContainer/ScrollContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/leg and wings/MarginContainer/ScrollContainer"]
 layout_mode = 2
 theme_override_constants/margin_bottom = 10
 
-[node name="Rings" type="HBoxContainer" parent="TabContainer/BodyContainer/MarginContainer/ScrollContainer/MarginContainer"]
+[node name="Rings" type="HBoxContainer" parent="TabContainer/leg and wings/MarginContainer/ScrollContainer/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("3_2rvi8")
 
-[node name="CheckBox" type="CheckButton" parent="TabContainer/BodyContainer/MarginContainer/ScrollContainer/MarginContainer/Rings"]
+[node name="CheckBox" type="CheckButton" parent="TabContainer/leg and wings/MarginContainer/ScrollContainer/MarginContainer/Rings"]
 layout_mode = 2
 theme_override_icons/checked = ExtResource("3_ck5j5")
 theme_override_icons/unchecked = ExtResource("5_ym1u5")
@@ -62,47 +105,50 @@ flat = true
 script = ExtResource("3_cidh8")
 parameter = ExtResource("7_8lt2x")
 
-[node name="CheckBox2" type="CheckButton" parent="TabContainer/BodyContainer/MarginContainer/ScrollContainer/MarginContainer/Rings"]
+[node name="CheckBox2" type="CheckButton" parent="TabContainer/leg and wings/MarginContainer/ScrollContainer/MarginContainer/Rings"]
 layout_mode = 2
 button_group = SubResource("ButtonGroup_2nawi")
 script = ExtResource("3_cidh8")
 parameter = ExtResource("8_q4g07")
 
-[node name="CheckBox3" type="CheckButton" parent="TabContainer/BodyContainer/MarginContainer/ScrollContainer/MarginContainer/Rings"]
+[node name="CheckBox3" type="CheckButton" parent="TabContainer/leg and wings/MarginContainer/ScrollContainer/MarginContainer/Rings"]
 layout_mode = 2
 button_group = SubResource("ButtonGroup_2nawi")
 script = ExtResource("3_cidh8")
 
-[node name="CheckBox4" type="CheckButton" parent="TabContainer/BodyContainer/MarginContainer/ScrollContainer/MarginContainer/Rings"]
+[node name="CheckBox4" type="CheckButton" parent="TabContainer/leg and wings/MarginContainer/ScrollContainer/MarginContainer/Rings"]
 layout_mode = 2
 button_group = SubResource("ButtonGroup_2nawi")
 script = ExtResource("3_cidh8")
 
-[node name="MarginContainer2" type="MarginContainer" parent="TabContainer/BodyContainer"]
+[node name="MarginContainer2" type="MarginContainer" parent="TabContainer/leg and wings"]
 layout_mode = 2
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 15
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 15
 
-[node name="Wings" type="HBoxContainer" parent="TabContainer/BodyContainer/MarginContainer2"]
+[node name="Wings" type="HBoxContainer" parent="TabContainer/leg and wings/MarginContainer2"]
 layout_mode = 2
 
-[node name="Button" type="Button" parent="TabContainer/BodyContainer/MarginContainer2/Wings"]
+[node name="Button" type="Button" parent="TabContainer/leg and wings/MarginContainer2/Wings"]
 layout_mode = 2
 text = "wing 1
 "
 
-[node name="Button2" type="Button" parent="TabContainer/BodyContainer/MarginContainer2/Wings"]
+[node name="Button2" type="Button" parent="TabContainer/leg and wings/MarginContainer2/Wings"]
 layout_mode = 2
 text = "wing 2
 "
 
-[node name="LegWingContainer" type="VBoxContainer" parent="TabContainer"]
+[node name="MarginContainer3" type="MarginContainer" parent="TabContainer/leg and wings"]
 visible = false
+custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
 
-[node name="ColorPickerButton" type="ColorPickerButton" parent="TabContainer/LegWingContainer"]
-custom_minimum_size = Vector2(25, 25)
-layout_mode = 2
-size_flags_horizontal = 0
+[node name="Node2D" parent="TabContainer/leg and wings/MarginContainer3" instance=ExtResource("9_otw3a")]
+position = Vector2(15, 0)

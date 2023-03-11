@@ -1,9 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://o5fejkmn4g1a"]
+[gd_scene load_steps=3 format=3 uid="uid://o5fejkmn4g1a"]
 
 [sub_resource type="TorusMesh" id="TorusMesh_aletx"]
 inner_radius = 0.8
 outer_radius = 1.2
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_467h0"]
+albedo_color = Color(1, 0.839216, 0.505882, 1)
+metallic = 1.0
+roughness = 0.19
+
 [node name="MeshInstance3D" type="MeshInstance3D"]
 mesh = SubResource("TorusMesh_aletx")
 skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_467h0")

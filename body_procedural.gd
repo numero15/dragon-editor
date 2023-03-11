@@ -1,7 +1,9 @@
 @tool
 extends Node3D
 
-@onready var mesh_instance = $Skeleton3D/MeshBody
+#@onready var mesh_instance = $Skeleton3D/MeshBody
+var mesh_instance
+@onready var skel = $Skeleton3D
 @export var body_height_curve_path : NodePath
 @export var body_width_curve_path : NodePath
 var body_height_curve_3d : Curve3D
@@ -9,18 +11,30 @@ var body_width_curve_3d : Curve3D
 var unaltered_vertices : Array = []
 var mdt
 @export var gradient : GradientTexture1D
+var radial_segments = 16
+const dragon_body = preload("res://mesh_dragon.tscn")
 
-
-func _ready():	
+func _ready():
+	remesh()
+	
+func change_length(_l : int) :
+	remesh(_l)
+	
+func remesh(_l : int =20):
+	mesh_instance  = dragon_body.instantiate()
+	mesh_instance.make(_l)
+	for _c in skel.get_children():
+		skel.remove_child(_c)
+	skel.add_child(mesh_instance)
+	unaltered_vertices = []
+	
 	mdt = MeshDataTool.new()
 	mdt.create_from_surface(mesh_instance.mesh, 0)
 	for i in range(mdt.get_vertex_count()):
 		unaltered_vertices.append(mdt.get_vertex(i))
+		
+		
 	mesh_instance.get_active_material(0).set_shader_parameter("gradient", gradient)
-	
-func remesh():
-#	var mdt = MeshDataTool.new()
-#	mdt.create_from_surface(mesh_instance.mesh, 0)
 	body_height_curve_3d = get_node(body_height_curve_path).curve
 	body_width_curve_3d = get_node(body_width_curve_path).curve
 
@@ -55,7 +69,11 @@ func remesh():
 			next_vert.x =  unaltered_vertices[i+1].x*-sample_w.x#	
 		var tangent : Vector2 = next_vert - prev_vert
 		var normal : Vector2 = tangent.rotated(-PI/2).normalized()
-		mdt.set_vertex_normal(i,Vector3(normal.x, normal.y,.0))		
+		mdt.set_vertex_normal(i,Vector3(normal.x, normal.y,.0))
+#		print(i/radial_segments)
+#		mdt.set_vertex_bones(i, PackedInt32Array([1,1,1,1]) )
 		
 	mesh_instance.mesh.clear_surfaces() # Deletes the first surface of the mesh.
 	mdt.commit_to_surface(mesh_instance.mesh)
+	
+	skel.make(_l)

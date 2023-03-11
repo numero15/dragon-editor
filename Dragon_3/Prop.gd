@@ -29,6 +29,12 @@ func setup(_type, _parameter):
 		ring_to_add = _parameter
 	
 func _process(_delta):
+	if bone_id >=skel.get_bone_count():
+		visible = false
+		return
+	else :
+		visible=true
+		
 	transform = skel.get_bone_global_pose(bone_id)
 
 func scale(_sx,_sy):
@@ -72,8 +78,8 @@ func scale(_sx,_sy):
 	greeble_multimesh.material_override.set_shader_parameter("gradient",_gt)
 #	greeble_multimesh.multimesh = dragon_gradient.sample(.2)
 	greeble_multimesh.multimesh.transform_format = MultiMesh.TRANSFORM_3D
-	greeble_multimesh.multimesh.instance_count = 300*scale_x
-	greeble_multimesh.multimesh.visible_instance_count = 300*scale_x
+	greeble_multimesh.multimesh.instance_count = 30*scale_x
+	greeble_multimesh.multimesh.visible_instance_count = 30*scale_x
 
 	var rng = RandomNumberGenerator.new()
 	var _t : Transform3D

@@ -84,6 +84,9 @@ func compute_position(_modifier):
 	return  _modifier.oscillator.sample(distance) * strength
 
 func assign_position():
+	if bone_id >=get_node(skeleton).get_bone_count():
+		return
+	
 	var _skel = get_node(skeleton)
 	var rest = _skel.get_bone_rest(bone_id)
 	var g_tr = _skel.get_bone_global_pose(bone_id)

@@ -1,7 +1,7 @@
 [gd_scene load_steps=23 format=3 uid="uid://bnbc207ds38pc"]
 
 [ext_resource type="Script" path="res://Dragon_3/Prop.gd" id="1_imb63"]
-[ext_resource type="ArrayMesh" uid="uid://dhtjx705g1skw" path="res://models/new_feather.tres" id="2_a0hhl"]
+[ext_resource type="ArrayMesh" uid="uid://ctihpr3ueqwne" path="res://models/greeble_tentacle.tres" id="2_2s0dm"]
 [ext_resource type="PackedScene" uid="uid://dv3tktb2nweht" path="res://props/rings/vertebra.tscn" id="3_1rxr6"]
 [ext_resource type="PackedScene" uid="uid://crk8d6vmb2uj4" path="res://models/leg01.blend" id="3_3pt1b"]
 [ext_resource type="AudioStream" uid="uid://dqsytuv4bca7i" path="res://sounds/prop2.ogg" id="4_14ij2"]
@@ -9,8 +9,8 @@
 
 [sub_resource type="Gradient" id="Gradient_0l2o0"]
 interpolation_mode = 2
-offsets = PackedFloat32Array(0.233796, 0.31713, 0.55787, 0.747685)
-colors = PackedColorArray(0.219115, 0.858824, 0, 1, 0.064713, 0, 0.923594, 1, 0, 0.963095, 0.0215927, 1, 0.699219, 0, 0.534185, 1)
+offsets = PackedFloat32Array(0, 0.747685)
+colors = PackedColorArray(0.064713, 0, 0.923594, 1, 0.699219, 0, 0.534185, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_ipogm"]
 resource_local_to_scene = true
@@ -66,7 +66,11 @@ color_ramp = SubResource("GradientTexture1D_0gq7v")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1mkkn"]
 transparency = 1
+shading_mode = 2
+diffuse_mode = 3
 vertex_color_use_as_albedo = true
+metallic_specular = 0.0
+roughness = 0.05
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_snb2b"]
 _surfaces = [{
@@ -101,7 +105,10 @@ height = 1.0
 radius = 1.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3wh6b"]
+diffuse_mode = 3
 albedo_color = Color(0.760784, 0.156863, 0.760784, 1)
+metallic_specular = 0.0
+roughness = 0.0
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_wn5cx"]
 radius = 0.4
@@ -111,7 +118,8 @@ height = 3.0
 script = ExtResource("1_imb63")
 
 [node name="Greeble" type="MeshInstance3D" parent="."]
-mesh = ExtResource("2_a0hhl")
+visible = false
+mesh = ExtResource("2_2s0dm")
 
 [node name="MultiMeshGreeble" type="MultiMeshInstance3D" parent="."]
 material_override = SubResource("ShaderMaterial_vntwu")
