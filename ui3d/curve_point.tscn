@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://bwkdmd7dj6ry4"]
+
+[ext_resource type="Script" path="res://ui3d/CurvePoint.gd" id="1_4xn8f"]
+[ext_resource type="Material" uid="uid://bv4nvfkn3uy3" path="res://ui3d/shaderUI_horizontal_curve.tres" id="2_l3f4b"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_mj48n"]
+radius = 0.1
+
+[sub_resource type="SphereMesh" id="SphereMesh_47dkk"]
+resource_local_to_scene = true
+material = ExtResource("2_l3f4b")
+radius = 0.1
+height = 0.2
+
+[node name="CurvePoint" type="StaticBody3D"]
+script = ExtResource("1_4xn8f")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_mj48n")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_47dkk")

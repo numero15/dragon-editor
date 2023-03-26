@@ -1,21 +1,25 @@
-[gd_scene load_steps=40 format=3 uid="uid://cjdvhelrtmlyw"]
+[gd_scene load_steps=46 format=3 uid="uid://niqn2x6ivvb5"]
 
 [ext_resource type="Shader" path="res://sky.gdshader" id="1_ay4q6"]
 [ext_resource type="PackedScene" uid="uid://78bchv3mrr5n" path="res://skull_hammer_arrow.tscn" id="1_cnpe8"]
 [ext_resource type="Script" path="res://SpringArm3D.gd" id="1_j7mcm"]
-[ext_resource type="Script" path="res://EditableCurve.gd" id="2_wnvs2"]
+[ext_resource type="PackedScene" uid="uid://cso3sgdgwwt84" path="res://ui2d/ui_element.tscn" id="2_s00nd"]
+[ext_resource type="Script" path="res://ui3d/EditableCurve.gd" id="2_wnvs2"]
 [ext_resource type="Script" path="res://CameraTarget.gd" id="3_mklol"]
-[ext_resource type="Script" path="res://DragZone.gd" id="4_o3mko"]
+[ext_resource type="Script" path="res://ui3d/DragZone.gd" id="4_o3mko"]
 [ext_resource type="Script" path="res://Dragon_3.gd" id="5_648uc"]
 [ext_resource type="PackedScene" uid="uid://cu3278bkhu3ux" path="res://body_procedural.tscn" id="6_4m1mg"]
-[ext_resource type="Material" uid="uid://b3kj7kvewx4s3" path="res://shaderUI_vertical_curve.tres" id="6_5ufoc"]
-[ext_resource type="Material" uid="uid://bv4nvfkn3uy3" path="res://shaderUI_horizontal_curve.tres" id="8_1fijn"]
+[ext_resource type="Material" uid="uid://b3kj7kvewx4s3" path="res://ui3d/shaderUI_vertical_curve.tres" id="6_5ufoc"]
+[ext_resource type="Material" uid="uid://bv4nvfkn3uy3" path="res://ui3d/shaderUI_horizontal_curve.tres" id="8_1fijn"]
 [ext_resource type="Script" path="res://Props.gd" id="8_aefjh"]
 [ext_resource type="Script" path="res://Dragon_3/SkeletonManager.gd" id="8_wec21"]
 [ext_resource type="AudioStream" uid="uid://06jhetqh3cdv" path="res://sounds/Dark Ambient 4.wav" id="12_mpvlx"]
-[ext_resource type="PackedScene" uid="uid://d3m51b0uvhqbj" path="res://UI_wing.tscn" id="12_wrwwg"]
+[ext_resource type="PackedScene" uid="uid://duoiocbwa580o" path="res://ui2d/UI_panel.tscn" id="12_wrwwg"]
 [ext_resource type="PackedScene" uid="uid://cwbtb5q6jcba7" path="res://landscape/pine_tree_2.tscn" id="13_6il5c"]
+[ext_resource type="Script" path="res://MovableProps.gd" id="13_wjqca"]
 [ext_resource type="Texture2D" uid="uid://bq4842xbm1wt6" path="res://textures/PineTree_Leaves.png" id="13_ycnxm"]
+[ext_resource type="PackedScene" uid="uid://ffn8bmhsuovq" path="res://movable_prop.tscn" id="14_kcq3r"]
+[ext_resource type="Shader" path="res://shaders/vignette.gdshader" id="18_f1nd3"]
 
 [sub_resource type="Gradient" id="Gradient_oechn"]
 offsets = PackedFloat32Array(0.483516, 1)
@@ -109,6 +113,13 @@ rings = 4
 [sub_resource type="BoxShape3D" id="BoxShape3D_b4vn2"]
 size = Vector3(3, 0.05, 6)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_inag5"]
+resource_local_to_scene = true
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0.623529, 0.705882, 1, 1)
+disable_receive_shadows = true
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pl8yj"]
 transparency = 2
 alpha_scissor_threshold = 0.5
@@ -194,6 +205,12 @@ size = Vector2(100, 100)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j0cj0"]
 albedo_color = Color(0, 0.0196078, 0.160784, 1)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mmk5j"]
+shader = ExtResource("18_f1nd3")
+shader_parameter/vignette_intensity = 0.2
+shader_parameter/vignette_opacity = 0.5
+shader_parameter/vignette_rgb = Color(0.196078, 0, 0.239216, 1)
+
 [node name="Node3D" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -206,11 +223,13 @@ light_color = Color(1, 1, 0.827451, 1)
 light_energy = 0.684
 shadow_enabled = true
 
+[node name="UI_element" parent="." instance=ExtResource("2_s00nd")]
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="Control" parent="CanvasLayer" instance=ExtResource("12_wrwwg")]
 props = NodePath("../../Dragon_3/Props")
+movable_props = NodePath("../../Dragon_3/MovableProps")
 
 [node name="CheckButton" parent="CanvasLayer/Control/TabContainer/Body/MarginContainer/HBoxContainer" index="0"]
 button_group = SubResource("ButtonGroup_eax1t")
@@ -275,9 +294,9 @@ material = ExtResource("6_5ufoc")
 
 [node name="DragZone" type="StaticBody3D" parent="UIControls/EditableCurveHeight"]
 script = ExtResource("4_o3mko")
+target = NodePath("DragTarget")
 
 [node name="DragTarget" type="MeshInstance3D" parent="UIControls/EditableCurveHeight/DragZone"]
-visible = false
 mesh = SubResource("SphereMesh_24vkj")
 skeleton = NodePath("../..")
 
@@ -308,6 +327,7 @@ material = ExtResource("8_1fijn")
 
 [node name="DragZone" type="StaticBody3D" parent="UIControls/EditableCurveWidth"]
 script = ExtResource("4_o3mko")
+target = NodePath("DragTarget")
 horizontal = true
 
 [node name="DragTarget" type="MeshInstance3D" parent="UIControls/EditableCurveWidth/DragZone"]
@@ -412,11 +432,37 @@ bones/20/scale = Vector3(1, 1, 1)
 [node name="skullKeyShape_01" parent="Dragon_3" instance=ExtResource("1_cnpe8")]
 transform = Transform3D(-8.49119e-08, 0, 0.521184, 0, 0.521184, 0, -0.521184, 0, -8.49119e-08, 0, -0.201532, 0.064738)
 
+[node name="MovableProps" type="Node3D" parent="Dragon_3"]
+script = ExtResource("13_wjqca")
+skel = NodePath("../Body_procedural/Skeleton3D")
+body_height_curve_path = NodePath("../../UIControls/EditableCurveHeight")
+body_width_curve_path = NodePath("../../UIControls/EditableCurveWidth")
+
+[node name="TempLegContainer" type="Node3D" parent="Dragon_3/MovableProps"]
+
+[node name="MovableProp" parent="Dragon_3/MovableProps/TempLegContainer" instance=ExtResource("14_kcq3r")]
+is_temp = true
+
+[node name="MeshInstance3D" parent="Dragon_3/MovableProps/TempLegContainer/MovableProp/Control/DotPosition" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_inag5")
+
+[node name="MeshInstance3D2" parent="Dragon_3/MovableProps/TempLegContainer/MovableProp/Control/DotPosition" index="2"]
+surface_material_override/0 = SubResource("StandardMaterial3D_inag5")
+
+[node name="Area3D" parent="Dragon_3/MovableProps/TempLegContainer/MovableProp" index="1"]
+collision_layer = 16
+collision_mask = 16
+input_ray_pickable = false
+
+[node name="Legs" type="Node3D" parent="Dragon_3/MovableProps"]
+
 [node name="Props" type="Node3D" parent="Dragon_3"]
 script = ExtResource("8_aefjh")
 skeleton = NodePath("../Body_procedural/Skeleton3D")
 body_height_curve_path = NodePath("../../UIControls/EditableCurveHeight")
 body_width_curve_path = NodePath("../../UIControls/EditableCurveWidth")
+element_panel = NodePath("../../UI_element")
+movable_props = NodePath("../MovableProps")
 
 [node name="SkeletonManager" type="Node3D" parent="Dragon_3"]
 visible = false
@@ -442,11 +488,22 @@ mesh = SubResource("PlaneMesh_8w0dr")
 skeleton = NodePath("../DirectionalLight3D")
 surface_material_override/0 = SubResource("StandardMaterial3D_j0cj0")
 
+[node name="PostProcess" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_mmk5j")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
 [connection signal="camera_rot_x" from="CameraTarget/SpringArm3D" to="UIControls/EditableCurveHeight" method="_on_spring_arm_3d_camera_rot_x"]
 [connection signal="camera_rot_x" from="CameraTarget/SpringArm3D" to="UIControls/EditableCurveWidth" method="_on_spring_arm_3d_camera_rot_x"]
 [connection signal="length_changed" from="Dragon_3" to="CameraTarget" method="_on_dragon_3_length_changed"]
 [connection signal="length_changed" from="Dragon_3" to="UIControls/EditableCurveHeight" method="_on_dragon_3_length_changed"]
 [connection signal="length_changed" from="Dragon_3" to="UIControls/EditableCurveWidth" method="_on_dragon_3_length_changed"]
 
+[editable path="UI_element"]
 [editable path="CanvasLayer/Control"]
 [editable path="Dragon_3/Body_procedural"]
+[editable path="Dragon_3/MovableProps/TempLegContainer/MovableProp"]

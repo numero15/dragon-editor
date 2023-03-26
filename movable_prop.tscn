@@ -1,0 +1,96 @@
+[gd_scene load_steps=12 format=3 uid="uid://ffn8bmhsuovq"]
+
+[ext_resource type="Script" path="res://MovableProp.gd" id="1_riesx"]
+[ext_resource type="Script" path="res://ui3d/DragZone.gd" id="2_ct3ab"]
+[ext_resource type="Material" uid="uid://bmcmlnaeol4fm" path="res://ui3d/shaderUI.tres" id="3_houct"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_00b4c"]
+size = Vector3(0.01, 10, 30)
+
+[sub_resource type="SphereMesh" id="SphereMesh_2o8hd"]
+radius = 0.05
+height = 0.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qmxoo"]
+disable_ambient_light = true
+albedo_color = Color(1, 0, 0.345098, 1)
+disable_receive_shadows = true
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_5025b"]
+radius = 0.15
+
+[sub_resource type="SphereMesh" id="SphereMesh_nw66b"]
+radius = 0.1
+height = 0.2
+radial_segments = 8
+rings = 4
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_gsvyn"]
+top_radius = 0.02
+bottom_radius = 0.02
+height = 0.5
+radial_segments = 8
+rings = 1
+
+[sub_resource type="SphereMesh" id="SphereMesh_xuvel"]
+radius = 0.3
+height = 0.6
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_wcmn7"]
+
+[node name="MovableProp" type="Node3D"]
+script = ExtResource("1_riesx")
+
+[node name="Control" type="Node3D" parent="."]
+
+[node name="AreaDetection" type="StaticBody3D" parent="Control"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.375069, 0, 0)
+collision_layer = 20
+collision_mask = 20
+script = ExtResource("2_ct3ab")
+target = NodePath("MeshInstance3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Control/AreaDetection"]
+shape = SubResource("BoxShape3D_00b4c")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Control/AreaDetection"]
+visible = false
+mesh = SubResource("SphereMesh_2o8hd")
+surface_material_override/0 = SubResource("StandardMaterial3D_qmxoo")
+
+[node name="DotPosition" type="Area3D" parent="Control"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Control/DotPosition"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.367342, 0, 0)
+shape = SubResource("SphereShape3D_5025b")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Control/DotPosition"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.371537, 0, 0)
+mesh = SubResource("SphereMesh_nw66b")
+surface_material_override/0 = ExtResource("3_houct")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Control/DotPosition"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0.124959, 0, 0)
+mesh = SubResource("CylinderMesh_gsvyn")
+surface_material_override/0 = ExtResource("3_houct")
+
+[node name="RayCast3D" type="RayCast3D" parent="Control/DotPosition"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0.34502, 0, 0)
+collision_mask = 2
+collide_with_areas = true
+
+[node name="Area3D" type="Area3D" parent="."]
+visible = false
+collision_layer = 0
+collision_mask = 0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D"]
+mesh = SubResource("SphereMesh_xuvel")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_wcmn7")
+
+[connection signal="input_event" from="Control/DotPosition" to="." method="_on_control_input_event"]
+[connection signal="mouse_entered" from="Control/DotPosition" to="." method="_on_control_mouse_entered"]
+[connection signal="mouse_exited" from="Control/DotPosition" to="." method="_on_control_mouse_exited"]

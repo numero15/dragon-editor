@@ -1,0 +1,47 @@
+[gd_resource type="Shader" format=3 uid="uid://cirv6g123kljf"]
+
+[resource]
+code = "shader_type spatial;
+render_mode  diffuse_toon;
+
+uniform sampler2D gradient_height;
+uniform sampler2D gradient_map;
+uniform float belly_limit :  hint_range(0, 1);
+uniform sampler2D albedo_texture_body : hint_default_white;
+/*uniform sampler2D normal_texture : hint_normal;
+uniform sampler2D ao_texture : hint_default_white;*/
+uniform float scale_x : hint_range(.1, 5);
+uniform float scale_y : hint_range(.1, 5);
+uniform float rotation : hint_range(0, 6.28);
+
+vec2 rotateUV(vec2 uv, vec2 pivot, float _rotation) {
+    float cosa = cos(_rotation);
+    float sina = sin(_rotation);
+    uv -= pivot;
+    return vec2(
+        cosa * uv.x - sina * uv.y,
+        cosa * uv.y + sina * uv.x 
+    ) + pivot;
+}
+
+void fragment() {
+	vec3 color_body = texture(albedo_texture_body, rotateUV(UV, vec2(0.0,0.0), rotation)*vec2(scale_x,scale_y)).rgb;
+	if(UV.x > belly_limit){
+
+	
+	}
+	else{
+		
+	}
+	float gray = dot(color_body, vec3(0.299, 0.587, 0.114));
+	color_body = texture(gradient_map, vec2(gray, 0.5)).rgb;
+	color_body = mix(color_body, texture(gradient_map, vec2(UV.x, 0.5)).rgb,UV.x);
+	ALBEDO  =  color_body;
+//	NORMAL = texture(normal_texture, rotateUV(UV, vec2(0.0,0.0), rotation)*vec2(scale_x,scale_y)).rbg;
+//	AO = texture(ao_texture, rotateUV(UV, vec2(0.0,0.0), rotation)*vec2(scale_x,scale_y)).r;
+	ROUGHNESS = 0.0;
+	METALLIC = 0.0;
+	SPECULAR = 0.0;
+}
+
+"

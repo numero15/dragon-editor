@@ -1,0 +1,54 @@
+[gd_scene load_steps=2 format=3 uid="uid://cso3sgdgwwt84"]
+
+[ext_resource type="Script" path="res://ui2d/ui_element.gd" id="1_f3i23"]
+
+[node name="UI_element" type="CanvasLayer"]
+script = ExtResource("1_f3i23")
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = 1039.0
+offset_top = 275.0
+offset_right = 1137.0
+offset_bottom = 373.0
+
+[node name="Control" type="MarginContainer" parent="Panel"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -113.0
+offset_top = -64.0
+offset_right = 15.0
+offset_bottom = 64.0
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_horizontal = 8
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/Control"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/Control/VBoxContainer"]
+layout_mode = 2
+text = "scale"
+
+[node name="SliderScale" type="HSlider" parent="Panel/Control/VBoxContainer"]
+layout_mode = 2
+min_value = 1.0
+max_value = 2.0
+step = 0.01
+value = 1.0
+
+[node name="Close" type="Button" parent="Panel/Control/VBoxContainer"]
+layout_mode = 2
+text = "close
+"
+
+[connection signal="value_changed" from="Panel/Control/VBoxContainer/SliderScale" to="." method="_on_slider_scale_drag_ended"]
+[connection signal="button_up" from="Panel/Control/VBoxContainer/Close" to="." method="_on_close_button_up"]
